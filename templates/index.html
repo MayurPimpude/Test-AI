@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Tracker Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+        h1 { color: #333; }
+        .counter { font-size: 20px; margin-bottom: 20px; }
+        .visit-log { background: #fff; padding: 10px; border-radius: 5px; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px 12px; border: 1px solid #ccc; word-break: break-all; }
+        th { background: #eee; }
+    </style>
+</head>
+<body>
+    <h1>🧠 LLM Visit Tracker</h1>
+
+    <div class="counter">
+        <strong>Human Visits:</strong> {{ human_count }} |
+        <strong>AI Bot Visits:</strong> {{ ai_count }}
+    </div>
+
+    <div class="visit-log">
+        <h2>Recent Human Visits</h2>
+        <table>
+            <tr><th>Time</th><th>IP</th><th>User Agent</th><th>Referrer</th></tr>
+            {% for visit in human_visits %}
+                <tr>
+                    <td>{{ visit.timestamp }}</td>
+                    <td>{{ visit.ip }}</td>
+                    <td>{{ visit.user_agent }}</td>
+                    <td>{{ visit.referrer }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="visit-log">
+        <h2>Recent AI Bot Visits</h2>
+        <table>
+            <tr><th>Time</th><th>IP</th><th>User Agent</th><th>Referrer</th></tr>
+            {% for visit in ai_visits %}
+                <tr>
+                    <td>{{ visit.timestamp }}</td>
+                    <td>{{ visit.ip }}</td>
+                    <td>{{ visit.user_agent }}</td>
+                    <td>{{ visit.referrer }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
